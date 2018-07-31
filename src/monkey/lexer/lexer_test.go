@@ -1,3 +1,11 @@
+// Test cases for this Lexer (and Lexers's in general) should
+// try to provoke off-by-one errors, edge cases at end-of-file,
+// newline handling, multi-digit number parsing, etc...
+//
+// The input for tokenization may look like gibberish in some
+// cases, since it's not the job of the Lexer to say whether the
+// code makes sense, works, or contains errors. The Lexer should
+// just turn the input into tokens.
 package lexer
 
 import (
@@ -17,6 +25,9 @@ func TestNextToken(t *testing.T) {
 		};
 
 		let result = add(five, ten);
+
+		!-/*5;
+		5 < 10 > 5;
 	`
 
 	tests := []struct {
@@ -58,6 +69,18 @@ func TestNextToken(t *testing.T) {
 		{token.COMMA, ","},
 		{token.IDENT, "ten"},
 		{token.RPAREN, ")"},
+		{token.SEMICOLON, ";"},
+		{token.BANG, "!"},
+		{token.MINUS, "-"},
+		{token.SLASH, "/"},
+		{token.ASTERISK, "*"},
+		{token.INT, "5"},
+		{token.SEMICOLON, ";"},
+		{token.INT, "5"},
+		{token.LT, "<"},
+		{token.INT, "10"},
+		{token.GT, ">"},
+		{token.INT, "5"},
 		{token.SEMICOLON, ";"},
 		{token.EOF, ""},
 	}
