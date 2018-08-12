@@ -12,7 +12,7 @@ import (
 // and understandable. Acknowledging the fact that if there are bugs in the
 // lexer then they will likely blow up tests in the parser. I currently believe
 // that the advantages of using readable source code as input outweigh the
-// cons not mocking out the lexer. Time will tell though...
+// cons of not mocking out the lexer. Time will tell though...
 
 func TestLetStatements(t *testing.T) {
 	input := `
