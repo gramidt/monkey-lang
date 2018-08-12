@@ -1,6 +1,6 @@
 package ast
 
-import "./token"
+import "../token"
 
 type Node interface {
 	TokenLiteral() string
